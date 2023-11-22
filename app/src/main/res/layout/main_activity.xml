@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/lv_citiesList"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddCity" />
+
+    <Button
+        android:id="@+id/btnAddCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add City"
+        app:layout_constraintTop_toBottomOf="@id/lv_citiesList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetAll" />
+
+    <Button
+        android:id="@+id/btnGetAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get All"
+        app:layout_constraintTop_toBottomOf="@id/btnAddCity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetFiltered" />
+
+    <Button
+        android:id="@+id/btnGetFiltered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Filtered"
+        app:layout_constraintTop_toBottomOf="@id/btnGetAll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetBiggestAndSmallest" />
+
+    <Button
+        android:id="@+id/btnGetBiggestAndSmallest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Biggest and Smallest"
+        app:layout_constraintTop_toBottomOf="@id/btnGetFiltered"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
