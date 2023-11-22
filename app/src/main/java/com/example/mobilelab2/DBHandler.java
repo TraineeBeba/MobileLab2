@@ -127,4 +127,10 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert("cities", null, values);
         db.close();
     }
+
+    public void deleteCity(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("cities", "name=?", new String[]{name});
+        db.close();
+    }
 }

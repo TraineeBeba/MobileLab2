@@ -25,7 +25,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ContactActivity extends AppCompatActivity {
-    Button all_contacts_btn, selected_contacts_btn;
+    Button all_contacts_btn, selected_contacts_btn, back_btn;
     ListView lv_contactsList;
     ArrayAdapter contactsArrayAdapter;
 
@@ -40,6 +40,7 @@ public class ContactActivity extends AppCompatActivity {
 
         all_contacts_btn = findViewById(R.id.all_contacts_btn);
         selected_contacts_btn = findViewById(R.id.selected_contacts_btn);
+        back_btn = findViewById(R.id.back_btn);
         lv_contactsList = findViewById(R.id.lv_contactsList);
 
         all_contacts_btn.setOnClickListener(new View.OnClickListener() {
@@ -58,19 +59,9 @@ public class ContactActivity extends AppCompatActivity {
             }
         });
 
-
-//        lv_contactsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Contact contactModel = (Contact) adapterView.getItemAtPosition(i);
-//                String address = contactModel.getAddress();
-//                Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
-//                Log.i("CONTACT_ADDRESS", address);
-//                intent.putExtra("CONTACT_ADDRESS", address);
-//                startActivity(intent);
-//            }
-//        });
-
+        back_btn.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     private List<Contact> getPhoneContactsList(){
@@ -85,8 +76,6 @@ public class ContactActivity extends AppCompatActivity {
 
         Cursor cursor = contentResolver.query(uri, null, null, null, null);
         Cursor cursor_p = contentResolver.query(uri_p, null, null, null, null);
-
-        //Log.i( "CONTACT_PROVIDER", "Number fo contacts: " + Integer.toString(cursor.getCount()));
         String contactName = null;
         String contactNumber = null;
         String contactMail = null;
@@ -99,8 +88,7 @@ public class ContactActivity extends AppCompatActivity {
             Contact contact = new Contact(contactName, contactNumber, contactMail);
             returnList.add(contact);
 
-//            Log.i("CONTACT_PROVIDER", "Contact Name: " + contactName + " ContactPhone: " + contactNumber + " ContactMail: " + contactMail);
-        }
+       }
 
         cursor.close();
         cursor_p.close();
@@ -135,8 +123,7 @@ public class ContactActivity extends AppCompatActivity {
                 Contact contact = new Contact(contactName, contactNumber, contactMail);
                 returnList.add(contact);
             }
-
-//            Log.i("CONTACT_PROVIDER", "Contact Name: " + contactName + " ContactPhone: " + contactNumber + " ContactMail: " + contactMail);
+           Log.i("CONTACT_PROVIDER", "Contact Name: " + contactName + " ContactPhone: " + contactNumber + " ContactMail: " + contactMail);
         }
 
         cursor.close();

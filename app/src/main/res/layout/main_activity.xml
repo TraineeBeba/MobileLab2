@@ -21,27 +21,47 @@
         android:id="@+id/btnAddCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add City"
+        android:text="Додати"
+        app:layout_constraintTop_toBottomOf="@id/lv_citiesList"
+        app:layout_constraintEnd_toStartOf="@+id/btnContacts"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetAll" />
+
+    <Button
+        android:id="@+id/btnContacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Контакти"
         app:layout_constraintTop_toBottomOf="@id/lv_citiesList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnAddCity"
         app:layout_constraintBottom_toTopOf="@+id/btnGetAll" />
 
     <Button
         android:id="@+id/btnGetAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get All"
+        android:text="Усі міста"
+        app:layout_constraintTop_toBottomOf="@id/btnAddCity"
+        app:layout_constraintEnd_toStartOf="@+id/btnAbout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetFiltered" />
+
+    <Button
+        android:id="@+id/btnAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Про мене"
         app:layout_constraintTop_toBottomOf="@id/btnAddCity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnGetAll"
         app:layout_constraintBottom_toTopOf="@+id/btnGetFiltered" />
 
     <Button
         android:id="@+id/btnGetFiltered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Filtered"
+        android:text="Відфільтрувати"
         app:layout_constraintTop_toBottomOf="@id/btnGetAll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,11 +71,21 @@
         android:id="@+id/btnGetBiggestAndSmallest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Biggest and Smallest"
+        android:text="Відстані"
+        app:layout_constraintTop_toBottomOf="@id/btnGetFiltered"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Видалити"
         app:layout_constraintTop_toBottomOf="@id/btnGetFiltered"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toEndOf="@+id/btnGetBiggestAndSmallest"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

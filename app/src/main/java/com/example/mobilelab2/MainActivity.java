@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     DBHandler dbHandler;
-    Button btnAddCity, btnGetAll, btnGetFiltered, btnGetBiggestAndSmallest;
+    Button btnAddCity, btnGetAll, btnGetFiltered, btnGetBiggestAndSmallest, btnContacts,btnAbout,btnDelete;
     ArrayAdapter citiesArrayAdapter;
     ListView lv_citiesList;
 
@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         dbHandler = new DBHandler(this);
         lv_citiesList = findViewById(R.id.lv_citiesList);
 
+        citiesArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dbHandler.getAll());
+        lv_citiesList.setAdapter(citiesArrayAdapter);
+
         lv_citiesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("CITY_NAME", name);
                 startActivity(intent);
             }
+
+
         });
 
 
@@ -48,6 +53,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addCity();
+
+                citiesArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dbHandler.getAll());
+                lv_citiesList.setAdapter(citiesArrayAdapter);
+            }
+        });
+
+
+        btnContacts = findViewById(R.id.btnContacts);
+        // Set a click listener for the button
+        btnContacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ContactActivity.class);
+                startActivity(intent);
             }
         });
         btnGetAll = findViewById(R.id.btnGetAll);
@@ -58,6 +77,15 @@ public class MainActivity extends AppCompatActivity {
 
                 citiesArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dbHandler.getAll());
                 lv_citiesList.setAdapter(citiesArrayAdapter);
+            }
+        });
+        btnAbout = findViewById(R.id.btnAbout);
+        // Set a click listener for the button
+        btnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CardActivity.class);
+                startActivity(intent);
             }
         });
         btnGetFiltered = findViewById(R.id.btnGetFiltered);
@@ -80,7 +108,47 @@ public class MainActivity extends AppCompatActivity {
                 lv_citiesList.setAdapter(citiesArrayAdapter);
             }
         });
+        btnDelete = findViewById(R.id.btnDelete);
+        // Set a click listener for the button
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteCity();
+
+                citiesArrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dbHandler.getAll());
+                lv_citiesList.setAdapter(citiesArrayAdapter);
+            }
+        });
     }
+
+    private void deleteCity() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+
+        // Inflate and set the layout for the dialog
+        View view = inflater.inflate(R.layout.delete_city, null);
+        builder.setView(view);
+
+        // Set up the input fields
+        final EditText cityName = view.findViewById(R.id.cityName);
+
+        // Set up the buttons
+        builder.setPositiveButton("Delete", (dialog, which) -> {
+            try {
+                String name = cityName.getText().toString();
+                dbHandler.deleteCity(name);
+
+            }
+            catch (Exception e){
+
+            }
+        });
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+
+        builder.show();
+    }
+
     public void addCity() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -96,15 +164,22 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up the buttons
         builder.setPositiveButton("Add", (dialog, which) -> {
-            String name = nameEditText.getText().toString();
-            double distance = Double.parseDouble(distanceEditText.getText().toString());
-            int population = Integer.parseInt(populationEditText.getText().toString());
+            try {
+                String name = nameEditText.getText().toString();
+                double distance = Double.parseDouble(distanceEditText.getText().toString());
+                int population = Integer.parseInt(populationEditText.getText().toString());
 
-            // Create a City object with the input values
-            City newCity = new City(name, distance, population);
+                if (name != null) {
+                    // Create a City object with the input values
+                    City newCity = new City(name, distance, population);
 
-            // Call the addCity method to add the new city to the database
-            dbHandler.addCity(newCity);
+                    // Call the addCity method to add the new city to the database
+                    dbHandler.addCity(newCity);
+                }
+            }
+            catch (Exception e){
+
+            }
         });
 
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());

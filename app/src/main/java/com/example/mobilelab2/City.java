@@ -54,7 +54,7 @@ public class City {
 
     @Override
     public String toString() {
-        return name + '\n' +
+        return name + " id: " + id + "\n" +
                 distance + " km\n" +
                 population + " people";
     }
