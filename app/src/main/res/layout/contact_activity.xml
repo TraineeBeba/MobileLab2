@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Всі контакти"
-        app:layout_constraintEnd_toStartOf="@+id/selected_contacts_btn"
+        app:layout_constraintEnd_toStartOf="@+id/ivan_contacts_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,11 +38,11 @@
         app:layout_constraintTop_toBottomOf="@+id/lv_contactsList" />
 
     <Button
-        android:id="@+id/selected_contacts_btn"
+        android:id="@+id/ivan_contacts_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Не @ukr.net"
+        android:text="Івани"
         app:layout_constraintStart_toEndOf="@id/all_contacts_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

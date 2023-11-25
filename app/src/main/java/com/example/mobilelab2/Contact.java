@@ -4,12 +4,12 @@ public class Contact {
 
     private  String name;
     private String phoneNumber;
-    private String mail;
+    private String address;
 
-    public Contact(String name, String phoneNumber, String mail) {
+    public Contact(String name, String phoneNumber, String address) {
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.mail = mail;
+        this.address = address;
     }
 
     public Contact() {
@@ -31,18 +31,17 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getMail() {
-        return mail;
+    public String getAddress() {
+        return address;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
     public String toString() {
         return name + '\n' +
-                phoneNumber + '\n' +
-                mail;
+                phoneNumber;
     }
 }

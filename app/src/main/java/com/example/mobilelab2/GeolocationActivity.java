@@ -46,7 +46,7 @@ import java.util.Locale;
 public class GeolocationActivity  extends AppCompatActivity
         implements OnMapReadyCallback, RouteListener {
 
-    String cityName;
+    String address;
 
     private LatLng userLocation;
     private LatLng cityLocation;
@@ -59,8 +59,8 @@ public class GeolocationActivity  extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.geolocation_activity);
-        cityName = getIntent().getStringExtra("CITY_NAME");
-        Toast.makeText(this, cityName, Toast.LENGTH_SHORT).show();
+        address = getIntent().getStringExtra("ADDRESS");
+        Toast.makeText(this, address, Toast.LENGTH_SHORT).show();
 
         checkMyPermission();
         if(isPermissionGranted){
@@ -72,11 +72,17 @@ public class GeolocationActivity  extends AppCompatActivity
         }
     }
 
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        gMap = googleMap;
+        geoLocate();
+    }
+
     private void geoLocate() {
 
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
-            List<Address> addressList = geocoder.getFromLocationName(cityName, 1);
+            List<Address> addressList = geocoder.getFromLocationName(address, 1);
             if(addressList.size()>0){
                 Address address = addressList.get(0);
                 cityLocation = new LatLng(address.getLatitude(), address.getLongitude());
@@ -115,38 +121,7 @@ public class GeolocationActivity  extends AppCompatActivity
         gMap.moveCamera(cameraUpdate);
     }
 
-    private void checkMyPermission() {
-        Dexter.withContext(GeolocationActivity.this).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).withListener(new PermissionListener() {
-            @Override
-            public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                Toast.makeText(GeolocationActivity.this, "permission granted", Toast.LENGTH_SHORT).show();
-                isPermissionGranted = true;
-            }
 
-            @Override
-            public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-                Intent intent = new Intent();
-                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                Uri uri = Uri.fromParts("package", getPackageName(), "");
-                intent.setData(uri);
-                startActivity(intent);
-
-            }
-
-            @Override
-            public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
-                permissionToken.continuePermissionRequest();
-            }
-        }).check();
-    }
-
-
-
-    @Override
-    public void onMapReady(@NonNull GoogleMap googleMap) {
-        gMap = googleMap;
-        geoLocate();
-    }
 
     private void getRoute(LatLng start, LatLng end) {
         Log.i("GEOROUTE",start.toString());
@@ -195,4 +170,30 @@ public class GeolocationActivity  extends AppCompatActivity
     public void onRouteCancelled() {
         Toast.makeText(this, "Route Canceled", Toast.LENGTH_SHORT).show();
     }
+
+    private void checkMyPermission() {
+        Dexter.withContext(GeolocationActivity.this).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).withListener(new PermissionListener() {
+            @Override
+            public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                Toast.makeText(GeolocationActivity.this, "permission granted", Toast.LENGTH_SHORT).show();
+                isPermissionGranted = true;
+            }
+
+            @Override
+            public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", getPackageName(), "");
+                intent.setData(uri);
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+                permissionToken.continuePermissionRequest();
+            }
+        }).check();
+    }
+
 }

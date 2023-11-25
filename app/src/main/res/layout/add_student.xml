@@ -6,27 +6,35 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/editTextPIB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="City Name"
+        android:hint="П.І.Б"
         android:inputType="text"
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/editTextDistance"
+        android:id="@+id/score1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Distance"
+        android:hint="Оцінка з предмету1"
         android:inputType="numberDecimal"
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/editTextPopulation"
+        android:id="@+id/score2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Population"
+        android:hint="Оцінка з предмету2"
         android:inputType="numberDecimal"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Адреса"
+        android:inputType="text"
         android:minHeight="48dp" />
 
 </LinearLayout>

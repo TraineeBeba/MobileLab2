@@ -23,7 +23,8 @@
             android:exported="false"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCcomLb8Q7QhwlP3tXPb_02udURadXVVcs"/>
+
+            android:value="AIzaSyBUNokI7zd8OLNxEqSJgNSS0OB1G3qiwKw"/>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -39,7 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.mobilelab2.CardActivity" />
+        <activity android:name="com.example.mobilelab2.DeveloperActivity" />
     </application>
 
 </manifest>

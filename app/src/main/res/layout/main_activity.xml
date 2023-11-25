@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ListView
-        android:id="@+id/lv_citiesList"
+        android:id="@+id/studentsList"
         android:layout_width="0dp"
         android:layout_height="400dp"
         android:layout_marginStart="32dp"
@@ -15,77 +15,70 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddCity" />
+        app:layout_constraintBottom_toTopOf="@+id/btnAddStudentToDB" />
 
     <Button
-        android:id="@+id/btnAddCity"
+        android:id="@+id/btnAddStudentToDB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Додати"
-        app:layout_constraintTop_toBottomOf="@id/lv_citiesList"
+        android:text="Додати В БД"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetAll"
         app:layout_constraintEnd_toStartOf="@+id/btnContacts"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnGetAll" />
+        app:layout_constraintTop_toBottomOf="@id/studentsList" />
 
     <Button
         android:id="@+id/btnContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Контакти"
-        app:layout_constraintTop_toBottomOf="@id/lv_citiesList"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetAll"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnAddCity"
-        app:layout_constraintBottom_toTopOf="@+id/btnGetAll" />
+        app:layout_constraintStart_toEndOf="@+id/btnAddStudentToDB"
+        app:layout_constraintTop_toBottomOf="@id/studentsList"
+        app:layout_constraintVertical_bias="0.583" />
 
     <Button
         android:id="@+id/btnGetAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Усі міста"
-        app:layout_constraintTop_toBottomOf="@id/btnAddCity"
+        android:layout_marginTop="36dp"
+        android:text="Усі студенти в БД"
         app:layout_constraintEnd_toStartOf="@+id/btnAbout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnGetFiltered" />
+        app:layout_constraintTop_toBottomOf="@id/btnAddStudentToDB" />
 
     <Button
         android:id="@+id/btnAbout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:text="Про мене"
-        app:layout_constraintTop_toBottomOf="@id/btnAddCity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnGetAll"
-        app:layout_constraintBottom_toTopOf="@+id/btnGetFiltered" />
+        app:layout_constraintTop_toBottomOf="@id/btnAddStudentToDB" />
 
     <Button
-        android:id="@+id/btnGetFiltered"
+        android:id="@+id/getStudentsWithAverageAbove60"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Відфільтрувати"
-        app:layout_constraintTop_toBottomOf="@id/btnGetAll"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="156dp"
+        android:text=">60"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnGetBiggestAndSmallest" />
+        app:layout_constraintTop_toBottomOf="@+id/btnGetAll"
+        app:layout_constraintVertical_bias="0.228" />
 
     <Button
-        android:id="@+id/btnGetBiggestAndSmallest"
+        android:id="@+id/getPercentageOfStudentsWithAverageAbove60"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Відстані"
-        app:layout_constraintTop_toBottomOf="@id/btnGetFiltered"
+        android:layout_marginStart="268dp"
+        android:text="%"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <Button
-        android:id="@+id/btnDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Видалити"
-        app:layout_constraintTop_toBottomOf="@id/btnGetFiltered"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnGetBiggestAndSmallest"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAbout"
+        app:layout_constraintVertical_bias="0.229" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
